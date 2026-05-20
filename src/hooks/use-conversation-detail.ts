@@ -8,13 +8,6 @@ function isVirtualConversationId(conversationId: number): boolean {
   return !Number.isFinite(conversationId) || conversationId <= 0
 }
 
-export function useConversationDetail(conversationId: number): {
-  detail: DbConversationDetail | null
-  loading: boolean
-  error: string | null
-  acpLoadError: string | null
-}
-
 export function useConversationDetail(
   conversationId: number,
   options?: { paginated?: boolean }
