@@ -13,6 +13,16 @@ export function useConversationDetail(conversationId: number): {
   loading: boolean
   error: string | null
   acpLoadError: string | null
+}
+
+export function useConversationDetail(
+  conversationId: number,
+  options?: { paginated?: boolean }
+): {
+  detail: DbConversationDetail | null
+  loading: boolean
+  error: string | null
+  acpLoadError: string | null
 } {
   const { getSession, fetchDetail } = useConversationRuntime()
   const session = getSession(conversationId)
@@ -21,10 +31,14 @@ export function useConversationDetail(conversationId: number): {
   useEffect(() => {
     if (isVirtual) return
     if (session?.detail || session?.detailLoading) return
-    fetchDetail(conversationId)
+    fetchDetail(
+      conversationId,
+      options?.paginated ? { paginated: true } : undefined
+    )
   }, [
     conversationId,
     isVirtual,
+    options?.paginated,
     session?.detail,
     session?.detailLoading,
     fetchDetail,
