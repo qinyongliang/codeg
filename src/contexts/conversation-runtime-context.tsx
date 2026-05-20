@@ -25,7 +25,7 @@ import type {
 import { inferLiveToolName } from "@/lib/tool-call-normalization"
 import { toErrorMessage } from "@/lib/app-error"
 
-const CONVERSATION_TURN_PAGE_SIZE = 50
+const CONVERSATION_TURN_PAGE_SIZE = 20
 
 interface FetchDetailOptions {
   paginated?: boolean
